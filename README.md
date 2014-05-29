@@ -35,11 +35,11 @@ OR ... if you don't use a Puma config file and you start Puma via command line, 
 
 In your application and/or environment config:
 
-   config.middleware.use PumaStatsLogger::Middleware
+    config.middleware.use PumaStatsLogger::Middleware
    
 or in a Rails initializer:
 
-   Rails.application.middleware.use PumaStatsLogger
+    Rails.application.middleware.use PumaStatsLogger
    
    
 ##### Changing the logging destination
