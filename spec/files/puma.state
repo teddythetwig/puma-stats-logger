@@ -1,0 +1,21 @@
+---
+pid: 57709
+config: !ruby/object:Puma::Configuration
+  options:
+    :min_threads: 0
+    :max_threads: 10
+    :quiet: false
+    :debug: false
+    :binds:
+    - tcp://0.0.0.0:3000
+    :workers: 0
+    :daemon: false
+    :worker_directory: "/Users/nate/workspace/hired"
+    :config_file: config/puma.rb
+    :mode: :http
+    :worker_timeout: 60
+    :environment: development
+    :control_url: unix:///var/folders/_h/30bzldts3gj3n2tknnzcqsl40000gn/T/puma-status-1401402163005-57709
+    :state: tmp/puma.state
+    :control_url_temp: "/var/folders/_h/30bzldts3gj3n2tknnzcqsl40000gn/T/puma-status-1401402163005-57709"
+    :control_auth_token: a56928e2d78ffb8879a937d35b78510

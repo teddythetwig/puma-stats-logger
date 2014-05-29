@@ -1,12 +1,13 @@
 module PumaStatsLogger
   class Middleware
-    def initialize(app)
+    def initialize(app, options = {})
       @app = app
+      @logger = options[:logger] || Logger.new($stdout)
     end
 
     def call(env)
       status, headers, body = @app.call(env)
-      log_puma_stats if puma_options.present?
+      log_puma_stats if puma_options
       [status, headers, body]
     end
 
@@ -30,7 +31,7 @@ module PumaStatsLogger
       end
 
       stats = JSON.parse(stats.split("\r\n").last)
-      $stdout.puts stats.map{|k,v| "measure#puma.#{k}=#{v}"}.join(' ')
+      @logger.info stats.map{|k,v| "measure#puma.#{k}=#{v}"}.join(' ')
     end
   end
 end

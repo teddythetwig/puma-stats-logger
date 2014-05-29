@@ -1,2 +1,6 @@
 require 'socket'
+require 'yaml'
+require 'json'
+require 'logger'
+require 'puma/configuration'
 require 'puma_stats_logger/middleware'

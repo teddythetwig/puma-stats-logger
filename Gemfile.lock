@@ -3,12 +3,18 @@ PATH
   specs:
     puma-stats-logger (0.1.0)
       json
+      puma
 
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.5)
     json (1.8.1)
+    puma (2.8.2)
+      rack (>= 1.1, < 2.0)
+    rack (1.5.2)
+    rack-test (0.6.2)
+      rack (>= 1.0)
     rake (10.3.2)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -24,5 +30,6 @@ PLATFORMS
 
 DEPENDENCIES
   puma-stats-logger!
+  rack-test
   rake
   rspec
