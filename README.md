@@ -53,4 +53,4 @@ By default, the Puma stats are logged to standard output `$stdout`. This works g
 
 We use the Librato add-on on Heroku to make nice charts of this data. You may have noticed that the log output is already formatted for Librato, so if you're already using Librato, Puma metrics should show up automatically under Metrics.
 
-![Puma stats in Librato](https://dmrxx81gnj0ct.cloudfront.net/public/Screen+Shot+2014-05-29+at+5.07.16+PM.png "Puma stats in Librato")
+![Puma stats in Librato](https://dmrxx81gnj0ct.cloudfront.net/public/Screen+Shot+2014-05-29+at+5.19.18+PM.png "Puma stats in Librato")
