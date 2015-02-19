@@ -31,7 +31,12 @@ module PumaStatsLogger
       end
 
       stats = JSON.parse(stats.split("\r\n").last)
-      @logger.info stats.map{|k,v| "measure#puma.#{k}=#{v}"}.join(' ')
+      line = String.new.tap do |s|
+        s << "source=#{ENV['DYNO']} " if ENV['DYNO']
+        s << stats.map{|k,v| "measure#puma.#{k}=#{v}"}.join(' ')
+      end
+
+      @logger.info line
     end
   end
 end

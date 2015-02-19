@@ -18,7 +18,7 @@ describe PumaStatsLogger::Middleware do
       FileUtils.cp './spec/files/puma.state', 'tmp/puma.state'
 
       # stub what the Puma stats server would return
-      Socket.should_receive(:unix).with('/var/folders/_h/30bzldts3gj3n2tknnzcqsl40000gn/T/puma-status-1401402163005-57709').and_return(
+      expect(Socket).to receive(:unix).with('/var/folders/_h/30bzldts3gj3n2tknnzcqsl40000gn/T/puma-status-1401402163005-57709').and_return(
         "HTTP/1.0 200 OK\r\nContent-Type: application/json\r\nConnection: close\r\nContent-Length: 30\r\n\r\n{ \"backlog\": 0, \"running\": 1 }"
       )
     end
@@ -30,6 +30,12 @@ describe PumaStatsLogger::Middleware do
     it "outputs the puma stats" do
       get "/"
       expect(log_output.string).to include('measure#puma.backlog=0 measure#puma.running=1')
+    end
+
+    it "includes Heroku dyno information" do
+      ENV['DYNO'] = 'web.1'
+      get "/"
+      expect(log_output.string).to include('source=web.1')
     end
   end
 
