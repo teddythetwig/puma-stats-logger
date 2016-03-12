@@ -16,7 +16,7 @@ module PumaStatsLogger
     def puma_options
       @puma_options ||= begin
         return nil unless File.exists?(puma_state_file)
-        YAML.load_file(puma_state_file)['config'].options
+        YAML.load_file(puma_state_file)
       end
     end
 
@@ -25,8 +25,8 @@ module PumaStatsLogger
     end
 
     def log_puma_stats
-      stats = Socket.unix(puma_options[:control_url].gsub('unix://', '')) do |socket|
-        socket.print("GET /stats?token=#{puma_options[:control_auth_token]} HTTP/1.0\r\n\r\n")
+      stats = Socket.unix(puma_options['control_url'].gsub('unix://', '')) do |socket|
+        socket.print("GET /stats?token=#{puma_options['control_auth_token']} HTTP/1.0\r\n\r\n")
         socket.read
       end
 
